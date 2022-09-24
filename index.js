@@ -9,8 +9,8 @@ app.use(express.json())
 
 const URI = process.env.MONGO_URI
 const client = new MongoClient(URI)
-const allourkidsdb = client.db('allourkids')
-const circuits = allourkidsdb.collection('circuits')
+const donationsdb = client.db('donations')
+const events = donationsdb.collection('events')
 client.connect()
 console.log('Connected to MongoDB.')
 
@@ -20,24 +20,24 @@ app.listen(PORT, () => console.log(`Port is live on ${PORT}.`))
 
 // GET
 app.get('/', async (request, response) => {
-  const allItems = await circuits.find().toArray()
-  response.send(allItems)
+  const allEvents = await events.find().toArray()
+  response.send(allEvents)
 })
 
 // POST (Add)
 app.post('/', async (request, response) => {
-  await circuits.insertOne(request.body)
-  response.send('Item added to Circuits.')
+  await events.insertOne(request.body)
+  response.send('Item added to Events.')
 })
 
 // PUT (Update)
 app.put('/', async (request, response) => {
-  await circuits.findOneAndUpdate(request.query, {$set: request.body})
+  await events.findOneAndUpdate(request.query, {$set: request.body})
   response.send('Item updated.')
 })
 
 // DELETE
 app.delete('/', async (request, response) => {
-  await circuits.findOneAndDelete(request.query)
-  response.send('Item deleted from Circuits.')
+  await events.findOneAndDelete(request.query)
+  response.send('Item deleted from Events.')
 })
