@@ -58,7 +58,11 @@ app.put('/', async (request, response) => {
 
 // // DELETE
 app.delete('/', async (request, response) => {
-  await events.findOneAndDelete(request.query)
-  response.send('Item deleted from Events.')
+  const deleteEvent = await events.findOneAndDelete(request.query)
+  response.status(200).json({
+    status: 200,
+    data: deleteEvent,
+    message: 'Event deleted.'
+  })
 })
 
