@@ -24,6 +24,10 @@ app.get('/', async (request, response) => {
   response.send(allEvents)
 })
 
+app.get('/helloworld', async (request, response) => {
+  response.send('<h1>hello world</h1>')
+})
+
 // POST (Add)
 app.post('/', async (request, response) => {
   await events.insertOne(request.body)
