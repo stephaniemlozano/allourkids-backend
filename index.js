@@ -48,8 +48,12 @@ app.post('/', async (request, response) => {
 
 // // PUT (Update)
 app.put('/', async (request, response) => {
-  await events.findOneAndUpdate(request.query, {$set: request.body})
-  response.send('Item updated.')
+  const updateEvent = await events.findOneAndUpdate(request.query, {$set: request.body})
+  response.status(201).json({
+    status: 200,
+    data: updateEvent,
+    message: 'Event updated.'
+  })
 })
 
 // // DELETE
