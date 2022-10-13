@@ -1,18 +1,18 @@
 import express from 'express'
 import cors from 'cors'
-import { MongoClient } from 'mongodb'
-import 'dotenv/config'
+// import { MongoClient } from 'mongodb'
+// import 'dotenv/config'
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
-const URI = process.env.MONGO_URI
-const client = new MongoClient(URI)
-const donationsdb = client.db('donations')
-const events = donationsdb.collection('events')
-client.connect()
-console.log('Connected to MongoDB.')
+// const URI = process.env.MONGO_URI
+// const client = new MongoClient(URI)
+// const donationsdb = client.db('donations')
+// const events = donationsdb.collection('events')
+// client.connect()
+// console.log('Connected to MongoDB.')
 
 const PORT = 4001
 app.listen(PORT, () => console.log(`Port is live on ${PORT}.`))
