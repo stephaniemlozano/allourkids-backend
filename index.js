@@ -21,27 +21,36 @@ app.listen(PORT, () => console.log(`Port is live on ${PORT}.`))
 // GET
 app.get('/', async (request, response) => {
   const allEvents = await events.find().toArray()
-  response.send(allEvents)
+  response.status(200).json({
+    status: 200,
+    data: allEvents,
+    message: `All events.`,
+  })
 })
 
 app.get('/helloworld', async (request, response) => {
-  response.send('<h1>hello world</h1>')
+  response.status(200).json({
+    status: 200,
+    data: '<h1>hello world</h1>',
+    message: `All events.`,
+  })
 })
 
 // POST (Add)
-app.post('/', async (request, response) => {
-  await events.insertOne(request.body)
-  response.send('Item added to Events.')
-})
+// app.post('/', async (request, response) => {
+//   await events.insertOne(request.body)
+//   response.send('Item added to Events.')
+// })
 
-// PUT (Update)
-app.put('/', async (request, response) => {
-  await events.findOneAndUpdate(request.query, {$set: request.body})
-  response.send('Item updated.')
-})
+// // PUT (Update)
+// app.put('/', async (request, response) => {
+//   await events.findOneAndUpdate(request.query, {$set: request.body})
+//   response.send('Item updated.')
+// })
 
-// DELETE
-app.delete('/', async (request, response) => {
-  await events.findOneAndDelete(request.query)
-  response.send('Item deleted from Events.')
-})
+// // DELETE
+// app.delete('/', async (request, response) => {
+//   await events.findOneAndDelete(request.query)
+//   response.send('Item deleted from Events.')
+// })
+
