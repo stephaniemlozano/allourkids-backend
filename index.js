@@ -14,7 +14,7 @@ const events = donationsdb.collection('events')
 client.connect()
 console.log('Connected to MongoDB.')
 
-const PORT = process.env.PORT
+const PORT = 4001
 app.listen(PORT, () => console.log(`Port is live on ${PORT}.`))
 
 
