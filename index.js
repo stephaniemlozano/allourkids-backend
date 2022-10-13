@@ -19,14 +19,14 @@ app.listen(PORT, () => console.log(`Port is live on ${PORT}.`))
 
 
 // GET
-app.get('/', async (request, response) => {
-  const allEvents = await events.find().toArray()
-  response.status(200).json({
-    status: 200,
-    data: allEvents,
-    message: `All events.`,
-  })
-})
+// app.get('/', async (request, response) => {
+//   const allEvents = await events.find().toArray()
+//   response.status(200).json({
+//     status: 200,
+//     data: allEvents,
+//     message: `All events.`,
+//   })
+// })
 
 app.get('/helloworld', async (request, response) => {
   response.status(200).json({
