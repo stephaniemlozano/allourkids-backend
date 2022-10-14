@@ -18,30 +18,49 @@ const PORT = 4001
 app.listen(PORT, () => console.log(`Port is live on ${PORT}.`))
 
 
+// // GET
+// app.get('/', async (request, response) => {
+//   const allEvents = await events.find().toArray()
+//   response.send(allEvents)
+// })
+
+
+// // POST (Add)
+// app.post('/', async (request, response) => {
+//   await events.insertOne(request.body)
+//   response.send('Event added to database.')
+// })
+
+// // PUT (Update)
+// app.put('/', async (request, response) => {
+//   await events.findOneAndUpdate(request.query, {$set: request.body})
+//   response.json('Event updated in database.')
+// })
+
+// // DELETE
+// app.delete('/', async (request, response) => {
+//   await events.findOneAndDelete(request.query)
+//   response.send('Event deleted from database.')
+// })
+
+
+
 // GET
 app.get('/', async (request, response) => {
   const allEvents = await events.find().toArray()
   response.status(200).json({
     status: 200,
-    data: allEvents,
+    apiData: allEvents,
     message: 'All events.',
   })
 })
-
-// app.get('/helloworld', async (request, response) => {
-//   response.status(200).json({
-//     status: 200,
-//     data: '<h1>hello world</h1>',
-//     message: `All events.`,
-//   })
-// })
 
 // POST (Add)
 app.post('/', async (request, response) => {
   const addEvent = await events.insertOne(request.body)
   response.status(201).json({
     status: 200,
-    data: addEvent,
+    apiData: addEvent,
     message: 'Event added.'
   })
 })
@@ -51,7 +70,7 @@ app.put('/', async (request, response) => {
   const updateEvent = await events.findOneAndUpdate(request.query, {$set: request.body})
   response.status(201).json({
     status: 200,
-    data: updateEvent,
+    apiData: updateEvent,
     message: 'Event updated.'
   })
 })
@@ -61,8 +80,7 @@ app.delete('/', async (request, response) => {
   const deleteEvent = await events.findOneAndDelete(request.query)
   response.status(200).json({
     status: 200,
-    data: deleteEvent,
+    apiData: deleteEvent,
     message: 'Event deleted.'
   })
 })
-
