@@ -42,8 +42,15 @@ app.listen(PORT, () => console.log(`Port is live on ${PORT}.`))
 //   await events.findOneAndDelete(request.query)
 //   response.send('Event deleted from database.')
 // })
-
-
+// Hello world
+app.get('/helloworld', async (request, response) => {
+  const allEvents = await events.find().toArray()
+  response.status(200).json({
+    status: 200,
+    apiData: `<h1>Hello World !</h1>` ,
+    message: 'Hello world message',
+  })
+})
 
 // GET
 app.get('/', async (request, response) => {
